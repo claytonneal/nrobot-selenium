@@ -1,0 +1,18 @@
+﻿---
+# Selenium grid condifuration
+huburl: http://selenium01.ie:4444/wd/hub
+
+# Default browser settings
+browsername: Firefox
+browsersize: DESKTOP
+browserlocation: Local
+
+# Interaction timeouts
+commandtimeout: 10
+pageloadtimeout: 15
+scripttimeout: 10
+openretrycount: 3
+openretrydelay: 5
+
+
+
