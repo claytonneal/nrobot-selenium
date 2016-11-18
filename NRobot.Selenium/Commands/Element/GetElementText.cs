@@ -11,14 +11,13 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to get the text of an element
     /// </summary>
-    class GetElementText : Command
+    class GetElementText
     {
-        public GetElementText(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public String Execute(CommandParams param)
         {
-            var locatecommand = new GetVisibleElement(this._receiver);
-            IWebElement element = (IWebElement)locatecommand.Execute(param);
+            var locatecommand = new GetVisibleElement();
+            IWebElement element = locatecommand.Execute(param);
             var text = element.Text;
             if (String.IsNullOrEmpty(text))
             {

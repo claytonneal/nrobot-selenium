@@ -12,13 +12,12 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to click on an element
     /// </summary>
-    class ClickElement : Command
+    class ClickElement
     {
-        public ClickElement(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var locatecommand = new GetVisibleElement(this._receiver);
+            var locatecommand = new GetVisibleElement();
             IWebElement element = (IWebElement)locatecommand.Execute(param);
             element.Click();
             return true;

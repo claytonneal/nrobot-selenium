@@ -11,16 +11,15 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command that clicks on one element until another element becomes visible
     /// </summary>
-    class ClickElementUntilAnotherElementDisplayed : Command
+    class ClickElementUntilAnotherElementDisplayed
     {
-        public ClickElementUntilAnotherElementDisplayed(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var click = new ClickElement(_receiver);
+            var click = new ClickElement();
             click.Execute(param);
-            var locatecommand = new GetVisibleElement(this._receiver);
-            var element = locatecommand.Execute(new CommandParams() { Locator = By.CssSelector(param.InputData) });
+            var locatecommand = new GetVisibleElement();
+            var element = locatecommand.Execute(new CommandParams() { Application = param.Application, Locator = By.CssSelector(param.InputData) });
             return true;
         }
     }

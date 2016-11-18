@@ -12,15 +12,14 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to hover over an element
     /// </summary>
-    class HoverOverElement : Command
+    class HoverOverElement
     {
-        public HoverOverElement(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var locatecommand = new GetVisibleElement(this._receiver);
+            var locatecommand = new GetVisibleElement();
             IWebElement element = (IWebElement)locatecommand.Execute(param);
-            var driver = _receiver.GetDriver();
+            var driver = param.Application.GetDriver();
             Actions action = new Actions(driver);
             action.MoveToElement(element).Build().Perform();
             return true;

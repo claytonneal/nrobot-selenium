@@ -10,16 +10,15 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to switch browser context to child window
     /// </summary>
-    class SwitchToChildWindow : Command
+    class SwitchToChildWindow
     {
-        public SwitchToChildWindow(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var driver = _receiver.GetDriver();
-            var parenthandle = _receiver.ParentWindowHandle;
+            var driver = param.Application.GetDriver();
+            var parenthandle = param.Application.ParentWindowHandle;
             var WindowHandles = driver.WindowHandles;
-            if (WindowHandles.Count == 1) throw new Exception("No child window exists");
+            if (WindowHandles.Count == 1) throw new ContinueRetryException("No child window exists");
             if (WindowHandles.Count > 2) throw new Exception("More than one child window is available");
             string ChildHandle = String.Empty;
             for (int counter = 0; counter < WindowHandles.Count; counter++)

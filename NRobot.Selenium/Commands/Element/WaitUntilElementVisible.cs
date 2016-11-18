@@ -11,15 +11,14 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to wait until an element is visible
     /// </summary>
-    class WaitUntilElementVisible : Command
+    class WaitUntilElementVisible
     {
-        public WaitUntilElementVisible(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var locatecommand = new GetVisibleElement(this._receiver);
-            IWebElement element = (IWebElement)locatecommand.Execute(param);
-            if (!element.Displayed) throw new Exception("Element is not visible");
+            var locatecommand = new GetVisibleElement();
+            IWebElement element = locatecommand.Execute(param);
+            if (!element.Displayed) throw new ContinueRetryException("Element is not visible");
             return true;
         }
     }

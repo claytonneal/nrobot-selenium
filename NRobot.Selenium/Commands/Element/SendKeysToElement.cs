@@ -11,13 +11,12 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to send keys to an element
     /// </summary>
-    class SendKeysToElement : Command
+    class SendKeysToElement
     {
-        public SendKeysToElement(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var locatecommand = new GetVisibleElement(this._receiver);
+            var locatecommand = new GetVisibleElement();
             IWebElement element = (IWebElement)locatecommand.Execute(param);
             element.Click();    //For IE
             element.Clear();

@@ -10,15 +10,14 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command that waits until element has specified css class
     /// </summary>
-    class WaitUntilElementHasClass : Command
+    class WaitUntilElementHasClass
     {
-        public WaitUntilElementHasClass(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var command = new CheckElementHasClass(_receiver);
-            var result = (Boolean)command.Execute(param);
-            if (!result) throw new Exception(String.Format("Element does not have css class {0}", param.InputData));
+            var command = new CheckElementHasClass();
+            var result = command.Execute(param);
+            if (!result) throw new ContinueRetryException(String.Format("Element does not have css class {0}", param.InputData));
             return true;
         }
     }

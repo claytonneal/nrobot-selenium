@@ -79,8 +79,8 @@
     <Compile Include="Commands\Browser\TakeScreenShot.cs" />
     <Compile Include="Commands\Browser\WaitForNoPopupWindow.cs" />
     <Compile Include="Commands\Browser\WaitForPopupWindow.cs" />
-    <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandParams.cs" />
+    <Compile Include="Commands\ContinueRetryException.cs" />
     <Compile Include="Commands\Element\CheckElementHasClass.cs" />
     <Compile Include="Commands\Element\ClearElement.cs" />
     <Compile Include="Commands\Element\ClickElement.cs" />

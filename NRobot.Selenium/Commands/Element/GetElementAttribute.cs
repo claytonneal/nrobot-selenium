@@ -11,14 +11,13 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to get an element attribute
     /// </summary>
-    class GetElementAttribute : Command
+    class GetElementAttribute
     {
-        public GetElementAttribute(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public String Execute(CommandParams param)
         {
-            var locatecommand = new GetVisibleElement(this._receiver);
-            IWebElement element = (IWebElement)locatecommand.Execute(param);
+            var locatecommand = new GetVisibleElement();
+            IWebElement element = locatecommand.Execute(param);
             return element.GetAttribute(param.InputData);
         }
     }

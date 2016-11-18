@@ -11,13 +11,12 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to find first visible element from locator, also with matching text value
     /// </summary>
-    class GetVisibleElementWithText : Command
+    class GetVisibleElementWithText
     {
-        public GetVisibleElementWithText(BrowserApp receiver) : base(receiver) { }
 
-        public override Object Execute(CommandParams param)
+        public IWebElement Execute(CommandParams param)
         {
-            var driver = _receiver.GetDriver();
+            var driver = param.Application.GetDriver();
             var elements = driver.FindElements(param.Locator);
             foreach (IWebElement element in elements)
             {

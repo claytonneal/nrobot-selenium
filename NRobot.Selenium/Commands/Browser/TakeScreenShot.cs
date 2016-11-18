@@ -12,13 +12,12 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to take a screenshot from the browser
     /// </summary>
-    class TakeScreenShot : Command
+    class TakeScreenShot
     {
-        public TakeScreenShot(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var driver = _receiver.GetDriver();
+            var driver = param.Application.GetDriver();
             var filename = param.InputData;
             if (!filename.ToLower().Contains(".jpg"))
             {

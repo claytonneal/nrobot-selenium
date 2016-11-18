@@ -21,11 +21,10 @@ namespace NRobot.Selenium
         public void Switch_Context_To_IFrame(String instance, String cssSelector)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new SwitchToFrame(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector) };
+            var command = new SwitchToFrame();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -34,11 +33,10 @@ namespace NRobot.Selenium
         public void Navigate_To_Url(String instance, String url)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new NavigateToURL(browser);
-            var param = new CommandParams() { InputData = url };
+            var command = new NavigateToURL();
+            var param = new CommandParams() { Application = browser, InputData = url };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
 		/// <summary>
@@ -107,10 +105,10 @@ namespace NRobot.Selenium
         public void Switch_To_Default_Content(String instance)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new SwitchToDefaultContent(browser);
+            var command = new SwitchToDefaultContent();
+            var param = new CommandParams() { Application = browser };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, null, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -119,10 +117,10 @@ namespace NRobot.Selenium
         public string Get_Current_Url(String instance)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new GetCurrentURL(browser);
+            var command = new GetCurrentURL();
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<string>(command, null, timeout);
-            string result = retry.Invoke();
+            var param = new CommandParams() { Application = browser };
+            string result = RetryCommandInvoker.Invoke<string>(command.Execute, param, timeout);
             return result;
         }
 
@@ -132,10 +130,10 @@ namespace NRobot.Selenium
 	    public void Wait_For_Popup_Window(String instance)
 	    {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new WaitForPopupWindow(browser);
+            var command = new WaitForPopupWindow();
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, null, timeout);
-            retry.Invoke();
+            var param = new CommandParams() { Application = browser };
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
 	    }
 
         /// <summary>
@@ -145,9 +143,9 @@ namespace NRobot.Selenium
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
             var timeout = browser.CommandTimeout;
-            var command = new WaitForNoPopupWindow(browser);
-            var retry = new RetryCommandInvoker<Object>(command, null, timeout);
-            retry.Invoke();
+            var command = new WaitForNoPopupWindow();
+            var param = new CommandParams() { Application = browser };
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
 
@@ -163,11 +161,10 @@ namespace NRobot.Selenium
 		public void Click_On_Element(String instance, String cssSelector)
 		{
 			var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var click = new ClickElement(browser);
-            var param = new CommandParams() { Locator =  By.CssSelector(cssSelector) };
+            var command = new ClickElement();
+            var param = new CommandParams() { Application = browser, Locator =  By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(click, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
 		}
 
         /// <summary>
@@ -176,11 +173,10 @@ namespace NRobot.Selenium
         public void Click_On_Element_With_Text_Value(String instance, String cssSelector, String textValue)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var click = new ClickElementWithTextValue(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = textValue };
+            var command = new ClickElementWithTextValue();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = textValue };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(click, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
 		/// <summary>
@@ -189,11 +185,10 @@ namespace NRobot.Selenium
 		public void Clear_Element_Text(String instance, String cssSelector)
 		{
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var clear = new ClearElement(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector) };
+            var command = new ClearElement();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(clear, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
 		}
 		
 		/// <summary>
@@ -202,11 +197,10 @@ namespace NRobot.Selenium
 		public void Set_Element_Text(String instance, String cssSelector, String text)
 		{
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var settext = new SendKeysToElement(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = text};
+            var command = new SendKeysToElement();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = text};
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(settext, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
 		}
 
         /// <summary>
@@ -215,11 +209,10 @@ namespace NRobot.Selenium
         public string Get_Element_Attribute(String instance, String cssSelector, String attributename)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var getattr = new GetElementAttribute(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = attributename };
+            var command = new GetElementAttribute();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = attributename };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<string>(getattr, param, timeout);
-            string result = retry.Invoke();
+            string result =  RetryCommandInvoker.Invoke<string>(command.Execute, param, timeout);
             return result;
         }
 
@@ -229,11 +222,10 @@ namespace NRobot.Selenium
         public void Set_Element_Text_Only_If_Empty(String instance, String cssSelector, String text)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var settext = new SendKeysToEmptyElement(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = text };
+            var command = new SendKeysToEmptyElement();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = text };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(settext, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 		
 		/// <summary>
@@ -242,11 +234,10 @@ namespace NRobot.Selenium
 		public string Get_Element_Text(String instance, String cssSelector)
 		{
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var gettext = new GetElementText(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector)};
+            var command = new GetElementText();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector)};
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<string>(gettext, param, timeout);
-            var result = retry.Invoke();
+            string result = RetryCommandInvoker.Invoke<string>(command.Execute, param, timeout);
             return result;
 		}
 		
@@ -256,11 +247,10 @@ namespace NRobot.Selenium
 		public void Wait_Until_Element_Visible(String instance, String cssSelector)
 		{
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new WaitUntilElementVisible(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector) };
+            var command = new WaitUntilElementVisible();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
 		}
 
         /// <summary>
@@ -269,11 +259,10 @@ namespace NRobot.Selenium
         public void Wait_Until_Element_Not_Visible(String instance, String cssSelector)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new WaitUntilElementNotVisible(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector) };
+            var command = new WaitUntilElementNotVisible();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
 
@@ -283,11 +272,10 @@ namespace NRobot.Selenium
         public void Select_Item_By_Text(String instance, String cssSelector, String TextValue)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new SelectElementOption(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = TextValue};
+            var command = new SelectElementOption();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = TextValue};
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -296,11 +284,10 @@ namespace NRobot.Selenium
         public String Wait_Until_Element_Has_Text(String instance, String cssSelector)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new WaitUntilElementHasText(browser);
-            var param = new CommandParams() {Locator = By.CssSelector(cssSelector)};
+            var command = new WaitUntilElementHasText();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector)};
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<string>(command, param, timeout);
-            string result = retry.Invoke();
+            string result = RetryCommandInvoker.Invoke<String>(command.Execute, param, timeout);
             return result;
         }
 
@@ -310,11 +297,10 @@ namespace NRobot.Selenium
         public String Count_Visible_Elements(String instance, String cssSelector)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new CountVisibleElements(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector) };
+            var command = new CountVisibleElements();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<string>(command, param, timeout);
-            string result = retry.Invoke();
+            string result = RetryCommandInvoker.Invoke<string>(command.Execute, param, timeout);
             return result;
         }
 
@@ -324,12 +310,11 @@ namespace NRobot.Selenium
         public void Wait_Until_Element_Has_Numeric_Value(String instance, String cssSelector, String expectedvalue)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new WaitUntilElementHasNumericValue(browser);
+            var command = new WaitUntilElementHasNumericValue();
             String expected = Double.Parse(expectedvalue).ToString();
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = expected};
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = expected};
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -338,11 +323,10 @@ namespace NRobot.Selenium
         public void Hover_Over_Element(String instance, String cssSelector)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new HoverOverElement(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector) };
+            var command = new HoverOverElement();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -351,11 +335,10 @@ namespace NRobot.Selenium
         public void Hover_Over_Element_With_Value(String instance, String cssSelector, String textValue)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new HoverOverElementWithValue(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = textValue };
+            var command = new HoverOverElementWithValue();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = textValue };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -365,11 +348,10 @@ namespace NRobot.Selenium
 	    public string[] Get_Text_Of_All_Elements(String instance, String cssSelector)
 	    {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new GetAllElementsText(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector) };
+            var command = new GetAllElementsText();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector) };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<string[]>(command, param, timeout);
-            string[] result = retry.Invoke();
+            string[] result = RetryCommandInvoker.Invoke<string[]>(command.Execute, param, timeout);
 	        return result;
 	    }
 
@@ -381,11 +363,10 @@ namespace NRobot.Selenium
         public Boolean Does_Element_Have_CssClass(string instance, String cssSelector, String cssClass)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new CheckElementHasClass(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = cssClass };
+            var command = new CheckElementHasClass();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = cssClass };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Boolean>(command, param, timeout);
-            Boolean result = retry.Invoke();
+            bool result = RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
             return result;
         }
 
@@ -395,11 +376,10 @@ namespace NRobot.Selenium
         public void Wait_Until_Element_Has_CssClass(string instance, string cssSelector, string cssClass)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new WaitUntilElementHasClass(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = cssClass };
+            var command = new WaitUntilElementHasClass();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = cssClass };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -408,11 +388,10 @@ namespace NRobot.Selenium
         public void Click_Until_Element_Has_CssClass(string instance, string cssSelector, string cssClass)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new ClickElementUntilHasClass(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssSelector), InputData = cssClass };
+            var command = new ClickElementUntilHasClass();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssSelector), InputData = cssClass };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
         /// <summary>
@@ -421,11 +400,10 @@ namespace NRobot.Selenium
         public void Click_Until_Another_Element_Visible(string instance, string cssElementToClickOn, string cssElementToCheckFor)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new ClickElementUntilAnotherElementDisplayed(browser);
-            var param = new CommandParams() { Locator = By.CssSelector(cssElementToClickOn), InputData = cssElementToCheckFor };
+            var command = new ClickElementUntilAnotherElementDisplayed();
+            var param = new CommandParams() { Application = browser, Locator = By.CssSelector(cssElementToClickOn), InputData = cssElementToCheckFor };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
 #endregion
@@ -438,11 +416,10 @@ namespace NRobot.Selenium
         public void Take_ScreenShot(String instance, String filepath)
         {
             var browser = BrowserManager.Instance.getBrowserInstance(instance);
-            var command = new TakeScreenShot(browser);
-            var param = new CommandParams() { InputData = filepath };
+            var command = new TakeScreenShot();
+            var param = new CommandParams() { Application = browser, InputData = filepath };
             var timeout = browser.CommandTimeout;
-            var retry = new RetryCommandInvoker<Object>(command, param, timeout);
-            retry.Invoke();
+            RetryCommandInvoker.Invoke<Boolean>(command.Execute, param, timeout);
         }
 
 #endregion

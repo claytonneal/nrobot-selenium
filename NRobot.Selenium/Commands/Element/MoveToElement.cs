@@ -12,16 +12,15 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to move focus to an element
     /// </summary>
-    class MoveToElement : Command
+    class MoveToElement
     {
-        public MoveToElement(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var driver = _receiver.GetDriver();
+            var driver = param.Application.GetDriver();
             Actions action = new Actions(driver);
-            var locatecommand = new GetVisibleElement(this._receiver);
-            IWebElement element = (IWebElement)locatecommand.Execute(param);
+            var locatecommand = new GetVisibleElement();
+            IWebElement element = locatecommand.Execute(param);
             action.MoveToElement(element);
             return true;
         }

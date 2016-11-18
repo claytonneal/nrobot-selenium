@@ -1,59 +1,55 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium;
 
 namespace NRobot.Selenium.Commands
 {
     /// <summary>
-    /// Class to execute a Command using a retry pattern
-    /// Will re-execute the command until either:
-    /// - Command returns not Null
-    /// - Command returns True
-    /// - No more execptions from Command
+    /// Class to retry executing command until either:
+    /// - Timeout
+    /// - An exception is raised that is not in the ignore list
+    /// - Command returns non null
     /// </summary>
-    class RetryCommandInvoker<T>
+    class RetryCommandInvoker
     {
-        protected Command _command;
-        protected CommandParams _param;
-        protected int _retrytimeout;
 
-        public RetryCommandInvoker(Command command, CommandParams param, int retrytimeout)
-        {
-            _command = command;
-            _param = param;
-            _retrytimeout = retrytimeout;
-        }
+        // List of ignored exceptions
+        private static Type[] _ignoredexceptions = { typeof(ElementNotVisibleException),
+                                                     typeof(StaleElementReferenceException),
+                                                     typeof(InvalidElementStateException),
+                                                     typeof(NoSuchElementException),
+                                                     typeof(NoSuchWindowException),
+                                                     typeof(NotFoundException),
+                                                     typeof(UnableToSetCookieException),
+                                                     typeof(ContinueRetryException)
+                                                   };
 
-        public T Invoke()
+        /// <summary>
+        /// Creates a DefaultWait to retry the command
+        /// </summary>
+        /// <typeparam name="TResult">Return type of the command</typeparam>
+        /// <param name="command">The command delegate</param>
+        /// <param name="param">The command parameters</param>
+        /// <param name="retrytimeout">timeout in seconds</param>
+        public static TResult Invoke<TResult>(Func<CommandParams, TResult> command, CommandParams param, int retrytimeout)
         {
-            T result = default(T);
-            DateTime startTime = DateTime.Now;
-            bool wasexception = false;
-            string lastexceptionmessage = String.Empty;
-            while (true)
+            var wait = new DefaultWait<CommandParams>(param);
+            wait.PollingInterval = new TimeSpan(0,0,0,1);
+            wait.Timeout = new TimeSpan(0,0,0,retrytimeout);
+            wait.IgnoreExceptionTypes(_ignoredexceptions);
+            try
             {
-                TimeSpan duration = (DateTime.Now - startTime);
-                if (duration.Seconds >= _retrytimeout) throw new Exception(String.Format("Timeout executing command, last exception {0}", lastexceptionmessage));
-                try
-                {
-                    var objresult = _command.Execute(_param);
-                    break;
-                }
-                catch (ExitRetryException exitexception)
-                {
-                    wasexception = true;
-                    lastexceptionmessage = exitexception.Message;
-                    break;
-                }
-                catch (Exception e)
-                {
-                    lastexceptionmessage = e.Message;
-                }
+                return wait.Until<TResult>(command);
             }
-            if (wasexception) throw new Exception(String.Format("Command terminated retry pattern with exception: {0}", lastexceptionmessage));
-            return result;
+            catch (WebDriverTimeoutException e)
+            {
+                Trace.WriteLine(String.Format("Timeout performing command : {0}", e.Message));
+                throw e;
+            }
         }
 
     }

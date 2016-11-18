@@ -7,17 +7,16 @@ using NRobot.Selenium.Domain;
 
 namespace NRobot.Selenium.Commands.Element
 {
-    class ClickElementUntilHasClass : Command
+    class ClickElementUntilHasClass
     {
-        public ClickElementUntilHasClass(BrowserApp receiver) : base(receiver) { }
 
-        public override object Execute(CommandParams param)
+        public Boolean Execute(CommandParams param)
         {
-            var click = new ClickElement(_receiver);
+            var click = new ClickElement();
             click.Execute(param);
-            var checkclass = new CheckElementHasClass(_receiver);
-            var result = (Boolean)checkclass.Execute(param);
-            if (!result) throw new Exception(String.Format("Element does not have css class {0}", param.InputData));
+            var checkclass = new CheckElementHasClass();
+            Boolean result = checkclass.Execute(param);
+            if (!result) throw new ContinueRetryException(String.Format("Element does not have css class {0}", param.InputData));
             return true;
         }
     }
