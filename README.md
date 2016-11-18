@@ -1,2 +1,2 @@
 # nrobot-selenium
-.Net Robot Framework Keyword Library
+.Net Robot Framework Selenium Keyword Library
