@@ -1,0 +1,34 @@
+*** Settings ***
+Resource          RegisterPage.txt
+Resource          RegisterSuccessPage.txt
+Resource          CommonResources.txt
+
+*** Test Cases ***
+Register New User
+    [Setup]    CommonResources.SetupBrowser
+    # Enter user details
+    RegisterPage.Enter First Name    Bob
+    RegisterPage.Enter Last Name    Smith
+    RegisterPage.Select Title    Mr
+    RegisterPage.Enter Age    30
+    RegisterPage.Enter Email Address    bob@smith.com
+    RegisterPage.Enter Confirmation Email Address    bob@smith.com
+    RegisterPage.Enter Password    Password123
+    RegisterPage.Enter Confirmation Password    Password123
+    RegisterPage.Enter Mobile Number    12345678901
+    RegisterPage.Enter Home Number    12345678901
+    RegisterPage.Enter Address Line 1    The Gallops
+    RegisterPage.Enter Address Line 2    Middle Street
+    RegisterPage.Enter City    Northern Town
+    RegisterPage.Select Country    UK
+    RegisterPage.Select How Find Us    Search engine
+    RegisterPage.Click Receive Future Offers
+    RegisterPage.Click on Terms and Conditions
+    # Click on Submit
+    RegisterPage.Click on Submit
+    # Check on success page
+    RegisterSuccessPage.Check on Page
+    # Check registration message
+    ${MESSAGE}=    RegisterSuccessPage.Get Registration Message
+    Should Contain    ${MESSAGE}    You have successfully registered for ACME Film
+    [Teardown]    CommonResources.CloseBrowser

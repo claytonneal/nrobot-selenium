@@ -1,0 +1,93 @@
+*** Settings ***
+Documentation     Resource file that represents the register page
+Library           Remote    http://localhost:8270/NRobot/Selenium/Keywords    WITH NAME    SELENIUM
+
+*** Variables ***
+${FIRST-NAME-TEXTBOX}    input#Name
+${LAST-NAME-TEXTBOX}    input#LName
+${TITLE-LIST}     select#Title
+${AGE-TEXTBOX}    input#Age
+${EMAIL-TEXTBOX}    input#EMail
+${CONF-EMAIL-TEXTBOX}    input#EMail2
+${PASSWORD-TEXTBOX}    input#Pass1
+${CONF-PASSWORD-TEXTBOX}    input#Pass2
+${MOBILE-TEXTBOX}    input#Mob
+${HOME-TEXTBOX}    input#Hom
+${ADDRESSLINE1-TEXTBOX}    input#add
+${ADDRESSLINE2-TEXTBOX}    input#add2
+${CITY-TEXTBOX}    input#City
+${COUNTRY-LIST}    select#Country
+${HOWFINDUS-LIST}    select#Howfound
+${RECEIVEOFFERS-CHECKBOX}    input#futureoffers
+${TERMSCONDITIONS-CHECKBOX}    input#Tnc
+${SUBMIT-BUTTON}    input#saveForm
+
+*** Keywords ***
+Enter First Name
+    [Arguments]    ${NAME}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${FIRST-NAME-TEXTBOX}    ${NAME}
+
+Enter Last Name
+    [Arguments]    ${NAME}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${LAST-NAME-TEXTBOX}    ${NAME}
+
+Select Title
+    [Arguments]    ${TITLE}
+    SELENIUM.SELECT ITEM BY TEXT    ${BROWSERID}    ${TITLE-LIST}    ${TITLE}
+
+Enter Age
+    [Arguments]    ${AGE}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${AGE-TEXTBOX}    ${AGE}
+
+Enter Email Address
+    [Arguments]    ${EMAIL}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${EMAIL-TEXTBOX}    ${EMAIL}
+
+Enter Confirmation Email Address
+    [Arguments]    ${EMAIL}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${CONF-EMAIL-TEXTBOX}    ${EMAIL}
+
+Enter Password
+    [Arguments]    ${PASSWORD}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${PASSWORD-TEXTBOX}    ${PASSWORD}
+
+Enter Confirmation Password
+    [Arguments]    ${PASSWORD}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${CONF-PASSWORD-TEXTBOX}    ${PASSWORD}
+
+Enter Mobile Number
+    [Arguments]    ${NUMBER}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${MOBILE-TEXTBOX}    ${NUMBER}
+
+Enter Home Number
+    [Arguments]    ${NUMBER}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${HOME-TEXTBOX}    ${NUMBER}
+
+Enter Address Line 1
+    [Arguments]    ${ADDRESS}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${ADDRESSLINE1-TEXTBOX}    ${ADDRESS}
+
+Enter Address Line 2
+    [Arguments]    ${ADDRESS}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${ADDRESSLINE2-TEXTBOX}    ${ADDRESS}
+
+Enter City
+    [Arguments]    ${CITY}
+    SELENIUM.SET ELEMENT TEXT    ${BROWSERID}    ${CITY-TEXTBOX}    ${CITY}
+
+Select Country
+    [Arguments]    ${COUNTRY}
+    SELENIUM.SELECT ITEM BY TEXT    ${BROWSERID}    ${COUNTRY-LIST}    ${COUNTRY}
+
+Select How Find Us
+    [Arguments]    ${HOWFIND}
+    SELENIUM.SELECT ITEM BY TEXT    ${BROWSERID}    ${HOWFINDUS-LIST}    ${HOWFIND}
+
+Click Receive Future Offers
+    SELENIUM.CLICK ON ELEMENT    ${BROWSERID}    ${RECEIVEOFFERS-CHECKBOX}
+
+Click on Terms and Conditions
+    SELENIUM.CLICK ON ELEMENT    ${BROWSERID}    ${TERMSCONDITIONS-CHECKBOX}
+
+Click on Submit
+    SELENIUM.CLICK ON ELEMENT    ${BROWSERID}    ${SUBMIT-BUTTON}

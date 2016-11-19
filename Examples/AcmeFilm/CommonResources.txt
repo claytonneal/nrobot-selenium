@@ -1,0 +1,22 @@
+*** Settings ***
+Documentation     Common resources file
+Library           Remote    http://localhost:8270/NRobot/Selenium/Keywords    WITH NAME    SELENIUM
+
+*** Variables ***
+${HOMEPAGE}       http://grid-tools-downloads.com/testpages/form2.html
+
+*** Keywords ***
+SetupBrowser
+    [Documentation]    Opens Firefox to the homepage and sets variable BROWSERID
+    # Open the browser
+    Set Test Variable    ${ISBROWSEROPEN}    ${false}
+    ${INSTANCE}=    SELENIUM.OPEN BROWSER    Chrome    DESKTOP    Local    ${HOMEPAGE}
+    Set Test Variable    ${ISBROWSEROPEN}    ${true}
+    Set Test Variable    ${BROWSERID}    ${INSTANCE}
+    # Set the timeouts
+    SELENIUM.SET COMMAND TIMEOUT    ${INSTANCE}    10
+    SELENIUM.SET PAGELOAD TIMEOUT    ${INSTANCE}    10
+
+CloseBrowser
+    [Documentation]    Closes the browser instance created in SetupBrowser
+    Run Keyword If    ${ISBROWSEROPEN}    SELENIUM.CLOSEBROWSER    ${BROWSERID}

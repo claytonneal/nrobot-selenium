@@ -1,0 +1,14 @@
+*** Settings ***
+Documentation     Resource file that represents the register success page
+Library           Remote    http://localhost:8270/NRobot/Selenium/Keywords    WITH NAME    SELENIUM
+
+*** Variables ***
+${SUCCESS-TEXT}    div#form_container h2>center
+
+*** Keywords ***
+Check on Page
+    SELENIUM.WAIT UNTIL ELEMENT VISIBLE    ${BROWSERID}    ${SUCCESS-TEXT}
+
+Get Registration Message
+    ${TEXT}=    SELENIUM.GET ELEMENT TEXT    ${BROWSERID}    ${SUCCESS-TEXT}
+    [Return]    ${TEXT}
