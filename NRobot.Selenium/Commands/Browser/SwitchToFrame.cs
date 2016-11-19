@@ -12,10 +12,10 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to switch the browser context to specified iframe
     /// </summary>
-    class SwitchToFrame
+    internal class SwitchToFrame
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement frame = (IWebElement)locatecommand.Execute(param);

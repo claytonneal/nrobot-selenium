@@ -10,15 +10,15 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to switch the browser context back to its parent window
     /// </summary>
-    class SwitchToParentWindow
+    internal class SwitchToParentWindow
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             var parenthandle = param.Application.ParentWindowHandle;
             driver.SwitchTo().Window(parenthandle);
-            Trace.WriteLine(String.Format("Switched to parent window {0}", parenthandle));
+            Trace.WriteLine(string.Format("Switched to parent window {0}", parenthandle));
             return true;
         }
 

@@ -11,20 +11,20 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to wait until the element has a text value
     /// </summary>
-    class WaitUntilElementHasText
+    internal class WaitUntilElementHasText
     {
 
-        public String Execute(CommandParams param)
+        internal string Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = locatecommand.Execute(param);
-            String textvalue = element.Text;
-            if (String.IsNullOrEmpty(textvalue))
+            string textvalue = element.Text;
+            if (string.IsNullOrEmpty(textvalue))
             {
                 throw new ContinueRetryException("Element has no text value");
             }
             textvalue = textvalue.Trim();
-            if (String.IsNullOrEmpty(textvalue))
+            if (string.IsNullOrEmpty(textvalue))
             {
                 throw new ContinueRetryException("Element has no text value");
             }

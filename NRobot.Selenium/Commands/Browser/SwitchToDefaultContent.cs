@@ -10,10 +10,10 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to switch browser context back to its default content
     /// </summary>
-    class SwitchToDefaultContent
+    internal class SwitchToDefaultContent
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             driver.SwitchTo().DefaultContent();

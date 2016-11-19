@@ -11,10 +11,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to clear the text in an element
     /// </summary>
-    class ClearElement
+    internal class ClearElement
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = locatecommand.Execute(param);

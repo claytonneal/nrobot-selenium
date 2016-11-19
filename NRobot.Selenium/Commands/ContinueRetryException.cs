@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace NRobot.Selenium.Commands
 {
-    class ContinueRetryException : Exception
+    internal class ContinueRetryException : Exception
     {
-        public ContinueRetryException() { }
-        public ContinueRetryException(string message) : base(message) { }
-        public ContinueRetryException(string message, Exception inner) : base(message, inner) { }
+        internal ContinueRetryException() { }
+        internal ContinueRetryException(string message) : base(message) { }
+        internal ContinueRetryException(string message, Exception inner) : base(message, inner) { }
     }
 }

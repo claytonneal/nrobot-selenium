@@ -12,10 +12,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Hovers over an element that is found by the locator, and has matching text value
     /// </summary>
-    class HoverOverElementWithValue
+    internal class HoverOverElementWithValue
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElementWithText();
             IWebElement element = (IWebElement)locatecommand.Execute(param);

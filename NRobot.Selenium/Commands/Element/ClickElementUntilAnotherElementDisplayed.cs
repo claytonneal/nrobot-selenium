@@ -11,10 +11,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command that clicks on one element until another element becomes visible
     /// </summary>
-    class ClickElementUntilAnotherElementDisplayed
+    internal class ClickElementUntilAnotherElementDisplayed
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var click = new ClickElement();
             click.Execute(param);

@@ -8,10 +8,10 @@ using NRobot.Selenium.Domain;
 
 namespace NRobot.Selenium.Commands.Element
 {
-    class WaitUntilElementNotVisible
+    internal class WaitUntilElementNotVisible
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             try
             {

@@ -12,10 +12,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to move focus to an element
     /// </summary>
-    class MoveToElement
+    internal class MoveToElement
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             Actions action = new Actions(driver);

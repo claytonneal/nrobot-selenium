@@ -11,10 +11,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to get text from all matching elements
     /// </summary>
-    class GetAllElementsText
+    internal class GetAllElementsText
     {
 
-        public String[] Execute(CommandParams param)
+        internal string[] Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             var elements = driver.FindElements(param.Locator);

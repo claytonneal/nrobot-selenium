@@ -11,15 +11,15 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to count the number of matching visible elements
     /// </summary>
-    class CountVisibleElements
+    internal class CountVisibleElements
     {
 
-        public String Execute(CommandParams param)
+        internal string Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             IList<IWebElement> elements = driver.FindElements(param.Locator);
             if (elements == null) return "0";
-            Int32 count = 0;
+            int count = 0;
             foreach (IWebElement element in elements)
             {
                 if (element.Displayed) count++;

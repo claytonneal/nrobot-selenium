@@ -12,10 +12,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to hover over an element
     /// </summary>
-    class HoverOverElement
+    internal class HoverOverElement
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = (IWebElement)locatecommand.Execute(param);

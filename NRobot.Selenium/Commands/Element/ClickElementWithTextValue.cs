@@ -11,10 +11,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to click on element matching locator and text value
     /// </summary>
-    class ClickElementWithTextValue
+    internal class ClickElementWithTextValue
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElementWithText();
             IWebElement element = locatecommand.Execute(param);

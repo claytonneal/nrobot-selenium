@@ -10,10 +10,10 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to get the number of open windows the browser has
     /// </summary>
-    class GetOpenWindowCount
+    internal class GetOpenWindowCount
     {
 
-        public String Execute(CommandParams param)
+        internal string Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             return driver.WindowHandles.Count.ToString();

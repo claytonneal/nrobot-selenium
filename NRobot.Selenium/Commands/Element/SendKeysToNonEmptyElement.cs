@@ -11,15 +11,15 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to send keys to an element only if its empty
     /// </summary>
-    class SendKeysToEmptyElement
+    internal class SendKeysToEmptyElement
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = (IWebElement)locatecommand.Execute(param);
             string text = element.Text;
-            if (!String.IsNullOrEmpty(text))
+            if (!string.IsNullOrEmpty(text))
             {
                 element.SendKeys(param.InputData);
             }

@@ -12,10 +12,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to click on an element
     /// </summary>
-    class ClickElement
+    internal class ClickElement
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = (IWebElement)locatecommand.Execute(param);

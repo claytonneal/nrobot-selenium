@@ -11,15 +11,15 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to check if element has specified css class
     /// </summary>
-    class CheckElementHasClass
+    internal class CheckElementHasClass
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = locatecommand.Execute(param);
             var cssClasses = element.GetAttribute("class");
-            if (String.IsNullOrEmpty(cssClasses))
+            if (string.IsNullOrEmpty(cssClasses))
             {
                 return false;
             }

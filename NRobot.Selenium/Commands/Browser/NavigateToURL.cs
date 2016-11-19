@@ -10,10 +10,10 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to navigate to a specified url
     /// </summary>
-    class NavigateToURL
+    internal class NavigateToURL
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             driver.Navigate().GoToUrl(param.InputData);

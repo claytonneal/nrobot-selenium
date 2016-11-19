@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 
 namespace NRobot.Selenium.Commands
 {
-    class CommandParams
+    internal class CommandParams
     {
         public BrowserApp Application { get; set; }
         public By Locator { get; set; }

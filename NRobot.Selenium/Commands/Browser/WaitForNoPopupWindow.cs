@@ -10,10 +10,10 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to wait for popup window to close, and switch context back to parent window
     /// </summary>
-    class WaitForNoPopupWindow
+    internal class WaitForNoPopupWindow
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             var count = new GetOpenWindowCount();

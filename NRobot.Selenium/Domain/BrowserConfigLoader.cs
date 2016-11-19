@@ -1,22 +1,22 @@
 ﻿using System;
+using System.IO;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
-using System.IO;
 
 namespace NRobot.Selenium.Domain
 {
     /// <summary>
     /// Class for loading and holding the browser configuration
     /// </summary>
-    class BrowserConfigLoader
+    internal class BrowserConfigLoader
     {
 
-        private const String configfile = "NRobot.Selenium.Config.yaml";
+        private const string Configfile = "NRobot.Selenium.Config.yaml";
 
         //Load the config class
-        public static BrowserConfig getConfig()
+        internal static BrowserConfig GetConfig()
         {
-            var input = new StreamReader(configfile);
+            var input = new StreamReader(Configfile);
             var deserializer = new Deserializer(namingConvention: new CamelCaseNamingConvention());
             return deserializer.Deserialize<BrowserConfig>(input);
         }

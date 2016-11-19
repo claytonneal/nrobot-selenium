@@ -10,10 +10,10 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to get the current browser url
     /// </summary>
-    class GetCurrentURL
+    internal class GetCurrentURL
     {
 
-        public String Execute(CommandParams param)
+        internal string Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             return driver.Url;

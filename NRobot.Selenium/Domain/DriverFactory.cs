@@ -19,7 +19,7 @@ namespace NRobot.Selenium.Domain
 		{
             //create local or remote
             IWebDriver result = null;
-            switch (config.browserlocation)
+            switch (config.Browserlocation)
 			{
                 case BrowserLocations.Local:
                     result = CreateLocalDriver(config);
@@ -32,8 +32,8 @@ namespace NRobot.Selenium.Domain
 			}
             //set common settings
             //timeouts
-            result.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, config.pageloadtimeout));
-            result.Manage().Timeouts().SetScriptTimeout(new TimeSpan(0, 0, config.pageloadtimeout));
+            result.Manage().Timeouts().SetPageLoadTimeout(new TimeSpan(0, 0, config.Pageloadtimeout));
+            result.Manage().Timeouts().SetScriptTimeout(new TimeSpan(0, 0, config.Pageloadtimeout));
             result.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(500));
             return result;
 		}
@@ -41,7 +41,7 @@ namespace NRobot.Selenium.Domain
         //Creates a local webdriver
         private static IWebDriver CreateLocalDriver(BrowserConfig config)
         {
-            switch (config.browsername)
+            switch (config.Browsername)
             {
                 case BrowserNames.Firefox:
                     return new FirefoxDriver();
@@ -59,8 +59,8 @@ namespace NRobot.Selenium.Domain
         //Creates a remote webdriver
         private static IWebDriver CreateRemoteDriver(BrowserConfig config)
         {
-            Uri huburl = new Uri(config.huburl);
-            switch (config.browsername)
+            Uri huburl = new Uri(config.Huburl);
+            switch (config.Browsername)
             {
                 case BrowserNames.Firefox:
                     return new RemoteWebDriver(huburl, DesiredCapabilities.Firefox());
@@ -89,10 +89,9 @@ namespace NRobot.Selenium.Domain
         //Gets options when running IE11 locally
 	    private static InternetExplorerOptions GetLocalIeOptions()
 	    {
-	        var options = new InternetExplorerOptions {EnsureCleanSession = true, IntroduceInstabilityByIgnoringProtectedModeSettings = true};
+	        var options = new InternetExplorerOptions { EnsureCleanSession = true, IntroduceInstabilityByIgnoringProtectedModeSettings = true };
 	        return options;
 	    }
-
 
 	}
 }

@@ -7,31 +7,30 @@ namespace NRobot.Selenium.Helpers
     /// <summary>
     /// Class for generic string/number/date helpers not covered by robot framework
     /// </summary>
-    class Keywords
+    public class Keywords
     {
 
         /// <summary>
         /// Extracts a number from a string
         /// </summary>
-        public static Double ExtractNumberFromString(string value)
+        public static double ExtractNumberFromString(string value)
         {
             //check inputs
-            if (String.IsNullOrEmpty(value)) throw new Exception("Input string is empty, cannot extract a number");
+            if (string.IsNullOrEmpty(value)) throw new Exception("Input string is empty, cannot extract a number");
             //extract
-            String allowed = "0123456789.-";
-            Int32 length = value.Length;
-            String result = "";
-            for (int counter=0; counter<length; counter++)
+            string allowed = "0123456789.-";
+            int length = value.Length;
+            string result = string.Empty;
+            for (int counter = 0; counter < length; counter++)
             {
-                Char item = value[counter];
+                char item = value[counter];
                 if (allowed.Contains(item))
                 {
                     result = result + item;
                 }
             }
-            return Double.Parse(result);
+            return double.Parse(result);
         }
-
 
         /// <summary>
         /// Gets the first matching text of first group of a regular expression
@@ -50,8 +49,6 @@ namespace NRobot.Selenium.Helpers
                 return groups[0].Captures[0].Value;
             }
         }
-
-
 
     }
 }

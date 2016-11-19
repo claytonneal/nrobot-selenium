@@ -11,10 +11,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to get an element attribute
     /// </summary>
-    class GetElementAttribute
+    internal class GetElementAttribute
     {
 
-        public String Execute(CommandParams param)
+        internal string Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = locatecommand.Execute(param);

@@ -12,10 +12,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to select a drop down list item
     /// </summary>
-    class SelectElementOption
+    internal class SelectElementOption
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var locatecommand = new GetVisibleElement();
             IWebElement element = locatecommand.Execute(param);

@@ -10,10 +10,10 @@ namespace NRobot.Selenium.Commands.Browser
     /// <summary>
     /// Command to wait for a new browser window and switch context to it
     /// </summary>
-    class WaitForPopupWindow
+    internal class WaitForPopupWindow
     {
 
-        public Boolean Execute(CommandParams param)
+        internal bool Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             var count = new GetOpenWindowCount();

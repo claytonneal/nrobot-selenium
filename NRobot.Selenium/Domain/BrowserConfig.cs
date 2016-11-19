@@ -5,18 +5,18 @@ namespace NRobot.Selenium.Domain
     /// <summary>
     /// Class to hold configuration from the NRobot.Selenium.Config.yaml file
     /// </summary>
-    class BrowserConfig
+    internal class BrowserConfig
     {
-        public string huburl { get; set; }
-        public BrowserNames browsername { get; set; }
-        public BrowserSize browsersize { get; set; }
-        public BrowserLocations browserlocation { get; set; }
-        public int commandtimeout { get; set; }
-        public int pageloadtimeout { get; set; }
-        public int scripttimeout { get; set; }
-        public int openretrycount { get; set; }
-        public int openretrydelay { get; set; }
-        public string url { get; set; }
+        internal string Huburl { get; set; }
+        internal BrowserNames Browsername { get; set; }
+        internal BrowserSize Browsersize { get; set; }
+        internal BrowserLocations Browserlocation { get; set; }
+        internal int Commandtimeout { get; set; }
+        internal int Pageloadtimeout { get; set; }
+        internal int Scripttimeout { get; set; }
+        internal int Openretrycount { get; set; }
+        internal int Openretrydelay { get; set; }
+        internal string Url { get; set; }
 
     }
 }

@@ -11,10 +11,10 @@ namespace NRobot.Selenium.Commands.Element
     /// <summary>
     /// Command to find first visible element from locator, also with matching text value
     /// </summary>
-    class GetVisibleElementWithText
+    internal class GetVisibleElementWithText
     {
 
-        public IWebElement Execute(CommandParams param)
+        internal IWebElement Execute(CommandParams param)
         {
             var driver = param.Application.GetDriver();
             var elements = driver.FindElements(param.Locator);
@@ -23,13 +23,13 @@ namespace NRobot.Selenium.Commands.Element
                 if (element.Displayed)
                 {
                     var elementText = element.Text;
-                    if (!String.IsNullOrEmpty(elementText))
+                    if (!string.IsNullOrEmpty(elementText))
                     {
-                        if (String.Equals(elementText, param.InputData)) return element;
+                        if (string.Equals(elementText, param.InputData)) return element;
                     }
                 }
             }
-            throw new ElementNotVisibleException(String.Format("No visible elements matching selector with text value", param.InputData));
+            throw new ElementNotVisibleException(string.Format("No visible elements matching selector with text value", param.InputData));
         }
     }
 }
